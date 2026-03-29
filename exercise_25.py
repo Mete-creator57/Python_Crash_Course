@@ -27,3 +27,10 @@ print(language.lstrip()) # stripping the left side
 print(language.rstrip()) # stripping the right side
 
 print(language.strip()) # stripping both sides
+
+# File Extensions 2-8 removeprefix() = start prefix , removesuffix() = end suffix
+url = "https://youtube.com"
+print(url.removeprefix("https://")) # prints youtube.com (protocol name removed)
+
+extension = "python.py"
+print(extension.removesuffix(".py")) # prints python (file extension removed)
