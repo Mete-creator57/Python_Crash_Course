@@ -32,3 +32,10 @@ print(f"And again the original list: {cars}")
 print(f" Before using reverse(): {cars}")
 cars.reverse()
 print(f" After using reverse(): {cars}")
+
+# Finding The Length of a List
+print(cars)
+
+length = len(cars)
+print(f"The length of a list is: {length}")
+

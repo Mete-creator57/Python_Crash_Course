@@ -26,7 +26,9 @@ print("No more spaces!")
 removed = f"{guest_list.pop(5)} has been removed"
 print(removed)
 
-# removing by using remove("") function
-guest_list.remove("Clank")
+# removing by using remove("") function !
+# removing by a name of an item in a list
+guest_list.remove("Clank") 
+# removing by using del statement (permanently)
 del guest_list[0] # removing by using del statement
 
