@@ -1,3 +1,4 @@
+# Try It Yourself (page 25)
 # Personal Message 2-3
 name = "eric"
 message = f"Hello {name}, let's learn some Python today!"
@@ -28,7 +29,7 @@ print(language.rstrip()) # stripping the right side
 
 print(language.strip()) # stripping both sides
 
-# File Extensions 2-8 removeprefix() = start prefix , removesuffix() = end suffix
+# File Extensions 2-8 removeprefix() = remove prefix at the beggining , removesuffix() = remove suffix at the end (extension)
 url = "https://youtube.com"
 print(url.removeprefix("https://")) # prints youtube.com (protocol name removed)
 
