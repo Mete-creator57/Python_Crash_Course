@@ -11,11 +11,13 @@ for value in range(1,11):
 
 print(squares_an)
 
-# and for this one too
 
+# and for this one too
 squares_2 = list(range(1,11))
-for index in range(len(squares_2[:])):
-    squares_2[index] **= 2
+
+# for INDEX in range(10)
+for number in range(len(squares_2[:])):
+    squares_2[number] **= 2
     
 print(squares_2)
     
