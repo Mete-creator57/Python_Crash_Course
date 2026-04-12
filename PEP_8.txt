@@ -1,0 +1,4 @@
+
+-> Leave 4 spaces per indentation level
+-> Use Blank Lines between code blocks
+-> Limit each line's characters' number to 79
