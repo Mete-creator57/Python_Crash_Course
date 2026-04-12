@@ -14,3 +14,7 @@ inventory = ['sword','shield','equipment','granate','bomb']
 for item in inventory:
     print(f"{item.title()} is in the inventory")
     print(f"\t{item.capitalize()} can be used \n")
+
+# Doing something after a for Loop
+print('Thanks to everyone! Have a nice day!')
+
