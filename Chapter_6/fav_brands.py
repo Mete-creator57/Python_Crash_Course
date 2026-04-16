@@ -13,6 +13,7 @@ print(f"Mete's favorite brand is: {fav_brands['mete'].title()}")
 sarah = fav_brands.get("sarah",'No values assigned to the specified key')
 print(sarah)
 
+# .get(key, default value)
 clark = fav_brands.get("clark",'error')
 print(clark)
 amd = fav_brands.pop("clark")
