@@ -56,3 +56,24 @@ print(my_fav_brands)
 for brand in set(my_fav_brands.values()):
     print(brand)
     
+marketplaces = {
+    'sarah' : ['amazon','trendyol'],
+    'mete' : ['ptt avm','n11'],
+    'jenny': ['trendyol','ptt avm','aliexpress','amazon'],
+    'james': ['hepsiburada','aliexpress','neweg'],
+    'john': ['aliexpress','temu','neweg'],
+    'kate': ['alibaba','neweg'],
+}
+for index, (name, mps) in enumerate(marketplaces.items()) :
+    print(F"\nIndex: {index}, {name.title()} prefers:")
+    for mp in mps:
+        if mp == 'amazon':
+            print(mp.title())
+            print(f'-->\tI love {mp.title()} too!')
+        else:
+            print(f"{mp.title()}") 
+
+copy_dict = marketplaces.copy()
+# or
+copy_dict_2 = dict(marketplaces)
+        
