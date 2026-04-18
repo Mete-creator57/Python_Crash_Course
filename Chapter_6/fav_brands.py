@@ -76,4 +76,3 @@ for index, (name, mps) in enumerate(marketplaces.items()) :
 copy_dict = marketplaces.copy()
 # or
 copy_dict_2 = dict(marketplaces)
-        
