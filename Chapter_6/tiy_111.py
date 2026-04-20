@@ -182,6 +182,7 @@ for i, (lesson, lesson_properties) in enumerate(lessons.items()) :
     for key, thing in lesson_properties.items():
         if isinstance(thing, list):
             print(f"\t{key.title()}:")
+
             for value in thing:
                 print(f"\t{value.title()}")
         else:
