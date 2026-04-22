@@ -12,11 +12,15 @@ while True:
 print(pizza)
 
 fee = 0
+is_active = True
 # Movie Tickets (7-5)
-while True:
+while is_active:
+
     age = input('Enter your age: ')
-    if age == 'q':
-        break
+
+    if age == 'quit':
+        is_active = False
+
     age = int(age)
 
     if age < 3 and age > 0:
@@ -36,3 +40,11 @@ while True:
     else:
         print('Invalid age')
         continue
+
+# Three Exits (7-6)
+# done
+
+# Infinity (7-7)
+i = 10
+while i <= 20:
+    print('Hello Bro')
