@@ -11,6 +11,6 @@ def build_gamer(username, age, **gamer_info):
     return gamer_info
 
 # assigning func call to a variable to return a value
-gamer = build_gamer('metehapik123', 15, location='Turkiye', gender='male')
+gamers = [build_gamer('metehapik123', 15, location='Turkiye', gender='male')]
 
-print(gamer)
+print(gamers)
