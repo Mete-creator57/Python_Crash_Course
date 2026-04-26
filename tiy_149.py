@@ -27,7 +27,8 @@ while is_active:
     
     while True:
         next = input('Any other desired items? (Y/N): ')
-        if next == 'N' or next == 'q':
+         # if next.upper() == 'N' or next.upper() == 'Q'
+        if next.upper() in ('N', 'Q'):
             is_active = False
             break
         else:
