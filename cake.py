@@ -45,7 +45,7 @@ while user_here:
         break
 
 make_cake(*fillings)
-make_cake('versatile buttercream','chocolate ganache', 
+make_cake(6,'versatile buttercream','chocolate ganache', 
 'tangy cream cheese')
 
     
@@ -53,3 +53,15 @@ make_cake('versatile buttercream','chocolate ganache',
 make_cake(10, 'cream cheese frosting','cream cheese')
 
 
+def print_msg(msg):
+    """Printing some message provided as a parameter"""
+    print(msg.capitalize())
+
+def make_cheesecake(size, **cheesecake_info):
+    """All info of a cheese cake"""
+
+    print(f'Size: {int(size)}-inch')
+    
+    cheesecake_info['size'] = size
+
+    return cheesecake_info
