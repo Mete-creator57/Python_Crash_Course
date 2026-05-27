@@ -5,20 +5,31 @@ class Car:
         self.make = make
         self.model = model
         self.year = year
+        self.petrol_amount = 0
     
     def describe_car(self):
         description = f"{self.make} {self.model} {self.year}"
         return description
+    
+    def fill_petrol_tank(self, amount):
+        print('Filling the petrol tank...')
+        self.petrol_amount = amount
+        return self.petrol_amount
+    
 
 # assign the returned value to an isntance
 my_car = Car('Audi', '2024', 'A4')
-print(my_car.describe_car())
 
-# turn into a list
-feats = my_car.describe_car().split()
-print(feats)
-for feat in feats:
-    print(feat)
+
+if __name__ == 'main':
+    print(my_car.describe_car())
+
+    # turn into a list
+    feats = my_car.describe_car().split()
+    print(feats)
+    for feat in feats:
+        print(feat)
+
 
 # Setting A Default Value for an Attribute 
 # Modifying Attribute Values
@@ -60,10 +71,13 @@ class Bike:
 
 
 my_bike = Bike('Honda', '2024', 'A4')
-my_bike.read_odometer()
-my_bike.describe_bike()
-my_bike.update_odometer(40)
-my_bike.increase_odometer(40.21)
+
+if __name__ == 'main':
+    my_bike.read_odometer()
+    my_bike.describe_bike()
+    my_bike.update_odometer(40)
+    my_bike.increase_odometer(40.21)
+
 
 
 
