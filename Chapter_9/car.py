@@ -1,40 +1,59 @@
 # Working with Classes and Instances
 # Returning values from a class
+
+"""A set of classes """
+
+
 class Car:
+    """A class that can be used to represent a car and it's properties"""
     def __init__(self, make, year, model):
+        """Initializes car's attributes"""
         self.make = make
         self.model = model
         self.year = year
         self.petrol_amount = 0
     
     def describe_car(self):
+        """Stores car's attributes in a single variable
+        And then return it
+        """
         description = f"{self.make} {self.model} {self.year}"
         return description
     
     def fill_petrol_tank(self, amount):
+        """Updates petrol amount by assigning a  given parameter to it
+        and the returns it
+        """
         print('Filling the petrol tank...')
         self.petrol_amount = amount
         return self.petrol_amount
     
 
-# assign the returned value to an isntance
-my_car = Car('Audi', '2024', 'A4')
 
 
+
+# only gets executed when this file is running
 if __name__ == 'main':
+    # assign the returned value to an isntance
+    my_car = Car('Audi', '2024', 'A4')
     print(my_car.describe_car())
 
-    # turn into a list
+    # turns into a list
+    # split() function is used to turn a returned string to a list
+    #  and assign it
     feats = my_car.describe_car().split()
     print(feats)
+    # printing each element in a list
     for feat in feats:
         print(feat)
 
 
 # Setting A Default Value for an Attribute 
 # Modifying Attribute Values
+"""A class representing a bike and it's properties"""
 class Bike:
     def __init__(self, make, year, model):
+        """Initializes attributes along with a defalut attribute"""
         self.make = make
         self.model = model
         self.year = year
@@ -57,11 +76,13 @@ class Bike:
         elif mileage == self.odometer_reading:
             print('New value can not be equal to a previous one!')
         else:
-            self.odometer_reading = mileage # updating
+            self.odometer_reading = mileage # updating attribute's value
+            # displaying only 2 decimal places after an integer
             print(f'Now odometer is {self.odometer_reading:.2f}')
         
 
     def increase_odometer(self, increasing):
+        """Increments value of the odometer"""
         if increasing <= 0:
             print('Value can not be less or equal to 0!')
         else:
@@ -70,9 +91,11 @@ class Bike:
             print(F'Updated odo: {self.odometer_reading:.2f}')
 
 
-my_bike = Bike('Honda', '2024', 'A4')
 
+
+# insurance
 if __name__ == 'main':
+    my_bike = Bike('Honda', '2024', 'A4')
     my_bike.read_odometer()
     my_bike.describe_bike()
     my_bike.update_odometer(40)
