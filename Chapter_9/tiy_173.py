@@ -1,25 +1,25 @@
 
 # Ice Cream Stand (9-6)
-class Restaraunt:
-    """Represents a restaraunt"""
+class Restaurant:
+    """Represents a restaurant"""
     def __init__(self, name, cuisine_type):
-        """Represents restaraunt attributes"""
+        """Represents restaurant attributes"""
         self.name = name
         self.cuisine_type = cuisine_type
         self.number_served = 0
 
-    def decsribe_restaraunt(self):
-        """Describes a restaraunt"""
+    def describe_restaurant(self):
+        """Describes a restaurant"""
         if len(self.name) > 10:
-            print(f"The restaraunt name is: {self.name.upper()}")
+            print(f"The restaurant name is: {self.name.upper()}")
         else:
-             print(f"The restaraunt name is: {self.name.title()}")
+             print(f"The restaurant name is: {self.name.title()}")
        
         print(f"Cuisine Type: {self.cuisine_type.title()}")
     
-    def open_restaraunt(self):
-        """Tells that a restaraunt is opened"""
-        print('The Restaraunt is open for customers!')
+    def open_restaurant(self):
+        """Tells that a restaurant is opened"""
+        print('The Restaurant is open for customers!')
 
     def update_cust_served(self, cust_served):
         """Updates number of already served customers"""
@@ -35,7 +35,7 @@ class Restaraunt:
             return self.number_served
         
 
-class IceCreamStand(Restaraunt):
+class IceCreamStand(Restaurant):
     """Represents an ice cream stand"""
     def __init__(self, name, cuisine_type, flavors):
         """Defining attributes specific to an ice cream stand"""
@@ -90,31 +90,31 @@ class Admin(User):
     """Represents admin and it's capabilities"""
     def __init__(self, first_name, last_name, age, gender, login_attempts):
         """Inherits all attributes of a parent class
-        And inits priveleges
+        And inits privileges
         """
         super().__init__(first_name, last_name, age, gender, login_attempts)
         
         # making an instance as an attribute
-        self.priveleges = Priveleges(['can add post',
+        self.privileges = Privileges(['can add post',
 'can delete post', 'can access system settings'])
 
 
 
-# Priveleges (9-8)
-class Priveleges:
-    """A class pertained to priveleges"""
-    def __init__(self, priveleges):
-          self.priveleges = priveleges
+# Privileges (9-8)
+class Privileges:
+    """A class pertained to privileges"""
+    def __init__(self, privileges):
+          self.privileges = privileges
 
-    def show_priveleges(self):
-        print('Admin Priveleges: ')
-        for pr in self.priveleges:
+    def show_privileges(self):
+        print('Admin Privileges: ')
+        for pr in self.privileges:
             print('- ' + pr)
 
 admin = Admin('dsssd', 'dsads', 45, 'sda', 45,)
 
 # accessing through another class
-admin.priveleges.show_priveleges()
+admin.privileges.show_privileges()
 
 # Battery Upgrade (9-9)
 # in a related file, not here

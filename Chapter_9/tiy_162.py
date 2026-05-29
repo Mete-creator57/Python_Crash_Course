@@ -6,14 +6,14 @@ class Restaurant:
 
     def describe_restaurant(self):
         if len(self.name) > 10:
-            print(f"The restaraunt name is: {self.name.upper()}")
+            print(f"The restaurant name is: {self.name.upper()}")
         else:
-             print(f"The restaraunt name is: {self.name.title()}")
+             print(f"The restaurant name is: {self.name.title()}")
        
         print(f"Cuisine Type: {self.cuisine_type.title()}")
     
     def open_restaurant(self):
-        print('The Restaraunt is open for customers!')
+        print('The Restaurant is open for customers!')
 
 my_rest = Restaurant("Domino's Pizza", 'fast food')
 print(my_rest.name, my_rest.cuisine_type)
