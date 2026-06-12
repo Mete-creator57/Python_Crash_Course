@@ -1,5 +1,6 @@
 # importing 'Car' class from car module (another file)
-from car import Car
+# importing a single class
+from Chapter_9.car import Car
 
 # subclass (child class)
 class Hybrid_Car(Car):
@@ -57,20 +58,23 @@ class Battery:
         self.battery_size = battery_size
 
     def upgrade_battery(self):
+        if self.battery_size == 65:
+            pass
         if self.battery_size != 65:
             self.battery_size = 65
-            return self.battery_size
+        return self.battery_size
         
     def describe_battery(self):
         print('This car has a ' + str(self.battery_size) + "-kWh battery.")
         
     def get_range(self):
+        car_range = 0
         if self.battery_size == 40:
-            range = 150
+            car_range = 150
         elif self.battery_size == 65:
-            range = 125
+            car_range = 225
         
-        print(f'This car can go about {range} miles on a full charge')
+        print(f'This car can go about {car_range} miles on a full charge')
 
 
             
@@ -86,7 +90,7 @@ print(toyota.describe_car())
 # child class's method
 toyota.battery.describe_battery()
 
-print(f'WHEEL DRIVE TYPE: {toyota.update_wheel_drive('AWD')}')
+print(f"WHEEL DRIVE TYPE: {toyota.update_wheel_drive('AWD')}")
 print(f"Before fueling: {toyota.petrol_amount}")
 # updating self.petrol_amount value (incrementing by 10)
 toyota.fill_petrol_tank(10)
