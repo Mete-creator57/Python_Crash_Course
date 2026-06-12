@@ -89,8 +89,8 @@ print(repr(obj.__printing__('goal')))
 class BMW:
     def display_wheel_drive(self) -> str:
         """Returns a formated string"""
-        return '---- BMW ----  \
-  \n-> FWD - Forward wheel drive'
+        return '---- Mercedes ---- \
+\n-> FWD - Forward wheel drive'
 
 
 """Represents Mercedes cars class """
