@@ -97,8 +97,8 @@ class BMW:
 class Mercedes:
     def display_wheel_drive(self) -> str:
         """Returns a formatted string"""
-        return '---- BMW ---- \
-\n-> AWD - All wheel drive'
+        return '---- Mercedes ---- \
+        \n-> AWD - All wheel drive'
 
 merc = Mercedes()
 bmw = BMW()
