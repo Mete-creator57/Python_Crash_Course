@@ -33,7 +33,7 @@ class Car:
 
 
 # only gets executed when this file is running
-if __name__ == 'main':
+if __name__ == '__main__':
     # assign the returned value to an isntance
     my_car = Car('Audi', '2024', 'A4')
     print(my_car.describe_car())
@@ -94,14 +94,9 @@ class Bike:
 
 
 # insurance
-if __name__ == 'main':
+if __name__ == '__main__':
     my_bike = Bike('Honda', '2024', 'A4')
     my_bike.read_odometer()
     my_bike.describe_bike()
     my_bike.update_odometer(40)
     my_bike.increase_odometer(40.21)
-
-
-
-
-

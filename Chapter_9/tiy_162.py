@@ -1,34 +1,34 @@
-# Restaraunt (9-1)
-class Restaraunt:
+# Restaurant (9-1)
+class Restaurant:
     def __init__(self, name, cuisine_type):
         self.name = name
         self.cuisine_type = cuisine_type
 
-    def decsribe_restaraunt(self):
+    def describe_restaurant(self):
         if len(self.name) > 10:
-            print(f"The restaraunt name is: {self.name.upper()}")
+            print(f"The restaurant name is: {self.name.upper()}")
         else:
-             print(f"The restaraunt name is: {self.name.title()}")
+             print(f"The restaurant name is: {self.name.title()}")
        
         print(f"Cuisine Type: {self.cuisine_type.title()}")
     
-    def open_restaraunt(self):
-        print('The Restaraunt is open for customers!')
+    def open_restaurant(self):
+        print('The Restaurant is open for customers!')
 
-my_rest = Restaraunt("Domino's Pizza", 'fast food')
+my_rest = Restaurant("Domino's Pizza", 'fast food')
 print(my_rest.name, my_rest.cuisine_type)
 
-my_rest.decsribe_restaraunt()
-my_rest.open_restaraunt()
+my_rest.describe_restaurant()
+my_rest.open_restaurant()
 
 # 3 Rests (9-2)
-your_rest = Restaraunt('Mikel coffee factory', 'coffee shop')
-some_rest = Restaraunt('Starbucks', 'coffee shop')
-another_rest = Restaraunt('KFC', 'Fast food')
+your_rest = Restaurant('Mikel coffee factory', 'coffee shop')
+some_rest = Restaurant('Starbucks', 'coffee shop')
+another_rest = Restaurant('KFC', 'Fast food')
 
-your_rest.decsribe_restaraunt()
-some_rest.decsribe_restaraunt()
-another_rest.decsribe_restaraunt()
+your_rest.describe_restaurant()
+some_rest.describe_restaurant()
+another_rest.describe_restaurant()
 
 # Users (9-3)
 class User:

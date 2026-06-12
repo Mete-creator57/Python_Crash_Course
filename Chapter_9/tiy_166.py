@@ -1,21 +1,21 @@
 
 # Number Served (9-4)
-class Restaraunt:
+class Restaurant:
     def __init__(self, name, cuisine_type):
         self.name = name
         self.cuisine_type = cuisine_type
         self.number_served = 0
 
-    def decsribe_restaraunt(self):
+    def describe_restaurant(self):
         if len(self.name) > 10:
-            print(f"The restaraunt name is: {self.name.upper()}")
+            print(f"The restaurant name is: {self.name.upper()}")
         else:
-             print(f"The restaraunt name is: {self.name.title()}")
+             print(f"The restaurant name is: {self.name.title()}")
        
         print(f"Cuisine Type: {self.cuisine_type.title()}")
     
-    def open_restaraunt(self):
-        print('The Restaraunt is open for customers!')
+    def open_restaurant(self):
+        print('The Restaurant is open for customers!')
 
     def update_cust_served(self, cust_served):
         self.number_served = cust_served
@@ -28,7 +28,7 @@ class Restaraunt:
             self.number_served += num
             return self.number_served
 
-my_rest = Restaraunt('djssj', 'dskskks')
+my_rest = Restaurant('djssj', 'dskskks')
 print(str(my_rest.number_served) + 'customers have been served now')
 print('Updating...')
 print(str(my_rest.update_cust_served(10)) + ' customers have been served in total')
@@ -75,5 +75,3 @@ print(f'Current number of login attempts: {random_user.login_attempts}')
 print("Incremented by 1: " + str(random_user.increment_login_attempts()))
 print('Resetting...')
 print(random_user.reset_login_attempts())
-
-
