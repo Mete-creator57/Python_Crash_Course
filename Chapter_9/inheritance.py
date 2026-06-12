@@ -1,5 +1,6 @@
 # importing 'Car' class from car module (another file)
-from car import Car
+# importing a single class
+from Chapter_9.car import Car
 
 # subclass (child class)
 class Hybrid_Car(Car):
