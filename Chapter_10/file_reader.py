@@ -18,16 +18,17 @@ for i, line in enumerate(contents, 1):
     print(f'The length of this line: {len(line)}')
 
 # Working with File's Contents
-quotattion_mark = ''
-for line in contents:
-    line = line.strip()
-    quotattion_mark += line
+words = path.read_text()
+pi_string = ''
 
-pi_string = quotattion_mark
-quotattion_mark = ''
-print(pi_string, end=' -> ')
+# looping through each line 
+for line in words.splitlines():
+    line = line.strip()
+    pi_string += line
+
+
+print(f'\n{pi_string}', end=' -> ')
 print('The length: ' + str(len(pi_string)))
 
 # limiting the string to only 10 characters long
 print(pi_string[:10])
-
