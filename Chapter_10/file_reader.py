@@ -27,7 +27,6 @@ pi_string = quotattion_mark
 quotattion_mark = ''
 print(pi_string, end=' -> ')
 print('The length: ' + str(len(pi_string)))
-
 # limiting the string to only 10 characters long
 print(pi_string[:10])
 
