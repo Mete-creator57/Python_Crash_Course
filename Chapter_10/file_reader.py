@@ -29,6 +29,5 @@ for line in words.splitlines():
 
 print(f'\n{pi_string}', end=' -> ')
 print('The length: ' + str(len(pi_string)))
-
 # limiting the string to only 10 characters long
 print(pi_string[:10])
