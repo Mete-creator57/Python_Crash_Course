@@ -1,6 +1,8 @@
 # import sys module to exit the game
 import sys
 
+from settings import Settings
+
 # import this to use it's functionality
 import pygame
 
@@ -10,13 +12,15 @@ class AlienInvasion:
 
         # init the bg setting for pygame to work properly
         pygame.init()
+
+        # create an instance of the settigns class
+        self.settings = Settings()
         
-        # set the bg color
-        self.bg_color = (230, 230, 230)
 
         # set the game window size (width, high) 
         # def the size in the tuple
-        self.screen = pygame.display.set_mode((1200, 800))
+        self.screen = pygame.display.set_mode((self.settings.window_width,
+         self.settings.window_height))
 
         # set the name of the game displaying window
         pygame.display.set_caption('Alien Game')
@@ -41,7 +45,7 @@ class AlienInvasion:
                     sys.exit() # the programm stops running
         
             # redraw the screen during the each pass through the loop
-            self.screen.fill(self.bg_color)
+            self.screen.fill(self.settings.bg_color)
 
 
             # at the end of each itearation of the while loop
@@ -49,7 +53,7 @@ class AlienInvasion:
             # deleting the old one and replacing it with the new one
             pygame.display.flip()
             # set the fps to 60
-            self.clock.tick(60)
+            self.clock.tick(self.settings.fps)
         
 # if the file is called directly
 if __name__ == '__main__':
