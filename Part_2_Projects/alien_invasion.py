@@ -18,6 +18,10 @@ class AlienInvasion:
         # set the name of the game displaying window
         pygame.display.set_caption('Alien Game')
 
+        # create an instance of the Clock class in pygame.time module
+        # so the created instance can access all of the Clock's class methoods
+        self.clock = pygame.time.Clock()
+
 
     def run_game(self):
         """The main method where our game runs"""
@@ -38,6 +42,8 @@ class AlienInvasion:
             # this function makes the most revcently drawn screen visible
             # deleting the old one and replacing it with the new one
             pygame.display.flip()
+            # set the fps to 60
+            self.clock.tick(60)
         
 # if the file is called directly
 if __name__ == '__main__':
