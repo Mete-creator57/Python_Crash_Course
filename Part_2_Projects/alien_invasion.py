@@ -11,6 +11,9 @@ class AlienInvasion:
         # init the bg setting for pygame to work properly
         pygame.init()
         
+        # set the bg color
+        self.bg_color = (230, 230, 230)
+
         # set the game window size (width, high) 
         # def the size in the tuple
         self.screen = pygame.display.set_mode((1200, 800))
@@ -37,7 +40,10 @@ class AlienInvasion:
                 if event.type == pygame.QUIT:  
                     sys.exit() # the programm stops running
         
-            
+            # redraw the screen during the each pass through the loop
+            self.screen.fill(self.bg_color)
+
+
             # at the end of each itearation of the while loop
             # this function makes the most revcently drawn screen visible
             # deleting the old one and replacing it with the new one
