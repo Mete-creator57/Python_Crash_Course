@@ -1,10 +1,9 @@
 # import sys module to exit the game
 import sys
-
 from settings import Settings
-
 # import this to use it's functionality
 import pygame
+from ship import Ship 
 
 class AlienInvasion:
     
@@ -16,6 +15,8 @@ class AlienInvasion:
         # create an instance of the settigns class
         self.settings = Settings()
         
+       
+        
 
         # set the game window size (width, high) 
         # def the size in the tuple
@@ -24,36 +25,49 @@ class AlienInvasion:
 
         # set the name of the game displaying window
         pygame.display.set_caption('Alien Game')
+        
+
+        self.ship = Ship(self)
 
         # create an instance of the Clock class in pygame.time module
         # so the created instance can access all of the Clock's class methoods
         self.clock = pygame.time.Clock()
+
+    def _check_events(self):
+        """Manage all the events in the game"""
+        # Watch for keyboard and mouse events
+        # the event loop (every action performed by the user == event)
+
+        # event.get() function returns the list of all events
+        for event in pygame.event.get():
+            # detect the event
+            # if the player clicks the x button to close the game
+            if event.type == pygame.QUIT:  
+                sys.exit() # the programm stops running
+            
+
+    def _update_screen(self):
+        """Fill the screen with a specified bg color and draw the ship on the screen"""
+        # redraw the screen during the each pass through the loop
+        self.screen.fill(self.settings.bg_color)
+            
+        # draw the ship at the bottom center
+        self.ship.blit_draw()
+        
+        # draw the newest version of the screen
+        pygame.display.flip()
 
 
     def run_game(self):
         """The main method where our game runs"""
 
         while True:
-            # Watch for keyboard and mouse events
-            # the event loop (every action performed by the user == event)
+            self._check_events()
+            self._update_screen()
 
-            # event.get() function returns the list of all events
-            for event in pygame.event.get():
-                # detect the event
-                # if the player clicks the x button to close the game
-                if event.type == pygame.QUIT:  
-                    sys.exit() # the programm stops running
-        
-            # redraw the screen during the each pass through the loop
-            self.screen.fill(self.settings.bg_color)
-
-
-            # at the end of each itearation of the while loop
-            # this function makes the most revcently drawn screen visible
-            # deleting the old one and replacing it with the new one
-            pygame.display.flip()
             # set the fps to 60
             self.clock.tick(self.settings.fps)
+        
         
 # if the file is called directly
 if __name__ == '__main__':
