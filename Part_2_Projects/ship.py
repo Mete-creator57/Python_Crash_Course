@@ -8,14 +8,15 @@ class Ship:
     def __init__(self, ai_instance):
         """Init the ship and set it's starting pos"""
 
-        # make the ship attribute access the game's attribute (screen settings)
+        # a reference to the game's screen so
+        # the ship knows where it has to be drawn
         self.screen = ai_instance.screen
         
         # get the screen rect to place the ship correctly on it
         self.screen_rect = ai_instance.screen.get_rect()
 
         # Load the ship image and assign it to the ship 
-        self.image = pygame.image.load('Part_2_Projects\images\DurrrSpaceShip.png')
+        self.image = pygame.image.load(r'images\DurrrSpaceShip.png')
         
         # rect -> rectangle (used for all objects)
         # get the ship rect

@@ -4,6 +4,7 @@ from settings import Settings
 # import this to use it's functionality
 import pygame
 from ship import Ship 
+from character_tiy_draw_center import Fighter
 
 class AlienInvasion:
     
@@ -13,7 +14,7 @@ class AlienInvasion:
         pygame.init()
 
         # create an instance of the settigns class
-        self.settings = Settings()
+        self.settings = Settings(bg_color=(135, 206, 235))
         
        
         
@@ -26,8 +27,9 @@ class AlienInvasion:
         # set the name of the game displaying window
         pygame.display.set_caption('Alien Game')
         
-
+        # attribute as an Instance of the Classes
         self.ship = Ship(self)
+        self.fighter = Fighter(self)
 
         # create an instance of the Clock class in pygame.time module
         # so the created instance can access all of the Clock's class methoods
@@ -46,16 +48,19 @@ class AlienInvasion:
                 sys.exit() # the programm stops running
             
 
-    def _update_screen(self):
+    def _update_screen_ship(self):
         """Fill the screen with a specified bg color and draw the ship on the screen"""
         # redraw the screen during the each pass through the loop
         self.screen.fill(self.settings.bg_color)
             
         # draw the ship at the bottom center
         self.ship.blit_draw()
+
+        self.fighter.blit_fighter()
         
         # draw the newest version of the screen
         pygame.display.flip()
+
 
 
     def run_game(self):
@@ -63,7 +68,7 @@ class AlienInvasion:
 
         while True:
             self._check_events()
-            self._update_screen()
+            self._update_screen_ship()
 
             # set the fps to 60
             self.clock.tick(self.settings.fps)
