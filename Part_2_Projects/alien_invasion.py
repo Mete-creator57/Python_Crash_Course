@@ -45,20 +45,42 @@ class AlienInvasion:
             # if the player clicks the x button to close the game
             if event.type == pygame.QUIT:  
                 sys.exit() # the programm stops running
+
+            # if the game detects a user input
             elif event.type == pygame.KEYDOWN:
-                
+
                 # check the movement on X axis
                 if event.key == pygame.K_RIGHT:
-                    # Move the ship the right using on x axis
-                    self.ship.ship_rect.x += 1
+                    # set the flag's value
+                    self.ship.movement_right = True
+
                 elif event.key == pygame.K_LEFT:
-                    self.ship.ship_rect.x -= 1
+                    self.ship.movement_left = True
                 
                 # check the movement on Y axis
                 elif event.key == pygame.K_UP:
-                    self.ship.ship_rect.y -= 1
+                    self.ship.movement_up = True
+
                 elif event.key == pygame.K_DOWN:
-                    self.ship.ship_rect.y += 1
+                    self.ship.movement_down = True
+            
+            # if user realeases pressing the button
+            elif event.type == pygame.KEYUP:
+                # if it was the right key
+                if event.key == pygame.K_RIGHT:
+                    # set the value to false
+                    self.ship.movement_right = False
+                if event.key == pygame.K_LEFT:
+                    # set the value to false
+                    self.ship.movement_left = False
+                if event.key == pygame.K_UP:
+                    # set the value to false
+                    self.ship.movement_up = False
+                if event.key == pygame.K_DOWN:
+                    # set the value to false
+                    self.ship.movement_down = False
+
+
 
 
             
@@ -83,7 +105,13 @@ class AlienInvasion:
         """The main method where our game runs"""
 
         while True:
+            # first, check the events to detect what's happening right now
             self._check_events()
+
+            # update the movement of the ship
+            self.ship.update_movement()
+
+            # draw both fighter and ship and update the screen
             self._update_screen_ship()
 
             # set the fps to 60
