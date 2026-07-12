@@ -19,6 +19,7 @@ class Fighter:
         
         # place the fighter (rectangle) at the center of the screen shape
         # which is a rectangle as well
+        # align with the center of the screen form (rect)
         self.fighter_rect.center = self.screen_rect.center
 
     def blit_fighter(self):

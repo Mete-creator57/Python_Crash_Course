@@ -42,10 +42,26 @@ class AlienInvasion:
 
         # event.get() function returns the list of all events
         for event in pygame.event.get():
-            # detect the event
             # if the player clicks the x button to close the game
             if event.type == pygame.QUIT:  
                 sys.exit() # the programm stops running
+            elif event.type == pygame.KEYDOWN:
+                
+                # check the movement on X axis
+                if event.key == pygame.K_RIGHT:
+                    # Move the ship the right using on x axis
+                    self.ship.ship_rect.x += 1
+                elif event.key == pygame.K_LEFT:
+                    self.ship.ship_rect.x -= 1
+                
+                # check the movement on Y axis
+                elif event.key == pygame.K_UP:
+                    self.ship.ship_rect.y -= 1
+                elif event.key == pygame.K_DOWN:
+                    self.ship.ship_rect.y += 1
+
+
+            
             
 
     def _update_screen_ship(self):
