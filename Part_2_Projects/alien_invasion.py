@@ -86,7 +86,7 @@ class AlienInvasion:
             
             
 
-    def _update_screen_ship(self):
+    def _update_screen(self):
         """Fill the screen with a specified bg color and draw the ship on the screen"""
         # redraw the screen during the each pass through the loop
         self.screen.fill(self.settings.bg_color)
@@ -112,7 +112,7 @@ class AlienInvasion:
             self.ship.update_movement()
 
             # draw both fighter and ship and update the screen
-            self._update_screen_ship()
+            self._update_screen()
 
             # set the fps to 60
             self.clock.tick(self.settings.fps)

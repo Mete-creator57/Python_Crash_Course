@@ -11,6 +11,9 @@ class Ship:
         # a reference to the game's screen so
         # the ship knows where it has to be drawn
         self.screen = ai_instance.screen
+
+        # access the game settings
+        self.settings = ai_instance.settings
         
         # get the screen rect to place the ship correctly on it
         self.screen_rect = ai_instance.screen.get_rect()
@@ -25,6 +28,11 @@ class Ship:
         # start each new ship at the bottom center of the screen
         # place the ship at the bottom center
         self.ship_rect.midbottom = self.screen_rect.midbottom
+        
+        # store a float for the ship's  exact horizontal position
+        self.ship_x = float(self.ship_rect.x)
+
+        self.ship_y = float(self.ship_rect.y)
 
         # movement flag; start with a not moving ship
         self.movement_right = False
@@ -34,14 +42,20 @@ class Ship:
 
     def update_movement(self):
         """Update the ship's postion based on the movement flag"""
+
+        # update the ship's x value, not it's rect
         if self.movement_right == True:
-            self.ship_rect.x += 1
+            self.ship_x += self.settings.ship_speed # add 1.5 to the ship's postions on x axis
         elif self.movement_left:
-            self.ship_rect.x -= 1
+            self.ship_x -= self.settings.ship_speed
         elif self.movement_down:
-            self.ship_rect.y += 1
+            self.ship_y += self.settings.ship_speed
         elif self.movement_up:
-            self.ship_rect.y -= 1
+            self.ship_y = self.ship_y - self.settings.ship_speed
+
+        # update the rect object from self.ship_x / y
+        self.ship_rect.x = self.ship_x
+        self.ship_rect.y = self.ship_y
 
 
 

@@ -6,3 +6,6 @@ class Settings:
         self.window_width = width
         self.bg_color = bg_color
         self.fps = 60
+
+        # ship settings
+        self.ship_speed = 1.5
