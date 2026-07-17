@@ -44,13 +44,17 @@ class Ship:
         """Update the ship's postion based on the movement flag"""
 
         # update the ship's x value, not it's rect
-        if self.movement_right == True:
-            self.ship_x += self.settings.ship_speed # add 1.5 to the ship's postions on x axis
-        elif self.movement_left:
+        if self.movement_right == True and self.ship_rect.right < self.screen_rect.right:
+            self.ship_x += self.settings.ship_speed 
+        
+        # if the ship didn't reach the left side (left side 0)
+        elif self.movement_left and self.ship_rect.left > self.screen_rect.left:
             self.ship_x -= self.settings.ship_speed
-        elif self.movement_down:
+
+        elif self.movement_down and self.ship_rect.bottom < self.screen_rect.bottom:
             self.ship_y += self.settings.ship_speed
-        elif self.movement_up:
+
+        elif self.movement_up and self.ship_rect.top > self.screen_rect.top:
             self.ship_y = self.ship_y - self.settings.ship_speed
 
         # assign the updated coordinates to the ship's rect (form)
