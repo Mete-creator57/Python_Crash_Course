@@ -12,7 +12,7 @@ class Fighter:
         self.screen_rect = self.screen.get_rect()
         
         # upload the image of the ship and save it in a variable
-        self.fighter_image = pygame.image.load(r'images\fighter.bmp')
+        self.fighter_image = pygame.image.load('D:\Soft_Dev\Python_Crash_Course\Part_2_Projects\images\plane.bmp')
         
         # set the fighter shape (rectangle)
         self.fighter_rect = self.fighter_image.get_rect()

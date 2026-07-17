@@ -10,7 +10,7 @@ class AlienInvasion:
     
     def __init__(self):
 
-        # init the bg setting for pygame to work properly
+        # init the bg settings for pygame to work properly
         pygame.init()
 
         # create an instance of the settigns class
@@ -27,7 +27,7 @@ class AlienInvasion:
         # set the name of the game displaying window
         pygame.display.set_caption('Alien Game')
         
-        # attribute as an Instance of the Classes
+        # attribute as an Instance of the Class
         self.ship = Ship(self)
         self.fighter = Fighter(self)
 
@@ -66,16 +66,20 @@ class AlienInvasion:
             
             # if user realeases pressing the button
             elif event.type == pygame.KEYUP:
+
                 # if it was the right key
                 if event.key == pygame.K_RIGHT:
                     # set the value to false
                     self.ship.movement_right = False
+
                 if event.key == pygame.K_LEFT:
                     # set the value to false
                     self.ship.movement_left = False
+
                 if event.key == pygame.K_UP:
                     # set the value to false
                     self.ship.movement_up = False
+
                 if event.key == pygame.K_DOWN:
                     # set the value to false
                     self.ship.movement_down = False
@@ -99,6 +103,8 @@ class AlienInvasion:
         # draw the newest version of the screen
         pygame.display.flip()
 
+    def _move_character_(self):
+        self.ship.update_movement()
 
 
     def run_game(self):
@@ -109,9 +115,8 @@ class AlienInvasion:
             self._check_events()
 
             # update the movement of the ship
-            self.ship.update_movement()
+            self._move_character_()
 
-            # draw both fighter and ship and update the screen
             self._update_screen()
 
             # set the fps to 60
@@ -121,8 +126,8 @@ class AlienInvasion:
 # if the file is called directly
 if __name__ == '__main__':
     # create an instance of the created class
-    ai = AlienInvasion()
+    game = AlienInvasion()
 
     # and call the main function for the game to start
-    ai.run_game()
+    game.run_game()
 
