@@ -42,51 +42,57 @@ class AlienInvasion:
 
         # event.get() function returns the list of all events
         for event in pygame.event.get():
-            # if the player clicks the x button to close the game
+
+            # quit the game
             if event.type == pygame.QUIT:  
                 sys.exit() # the programm stops running
 
-            # if the game detects a user input
+            # if player presses a button
             elif event.type == pygame.KEYDOWN:
-
-                # check the movement on X axis
-                if event.key == pygame.K_RIGHT:
-                    # set the flag's value
-                    self.ship.movement_right = True
-
-                elif event.key == pygame.K_LEFT:
-                    self.ship.movement_left = True
-                
-                # check the movement on Y axis
-                elif event.key == pygame.K_UP:
-                    self.ship.movement_up = True
-
-                elif event.key == pygame.K_DOWN:
-                    self.ship.movement_down = True
+                self._check_keydown_(event)
             
-            # if user realeases pressing the button
+            # if player releases a key
             elif event.type == pygame.KEYUP:
-
-                # if it was the right key
-                if event.key == pygame.K_RIGHT:
-                    # set the value to false
-                    self.ship.movement_right = False
-
-                if event.key == pygame.K_LEFT:
-                    # set the value to false
-                    self.ship.movement_left = False
-
-                if event.key == pygame.K_UP:
-                    # set the value to false
-                    self.ship.movement_up = False
-
-                if event.key == pygame.K_DOWN:
-                    # set the value to false
-                    self.ship.movement_down = False
+                self._check_keyup_(event)
+                
+                
 
 
+    def _check_keydown_(self, event):
+        """Check and handle the keydown events"""
 
+        # check the movement on X axis
+        if event.key == pygame.K_RIGHT:
+            # set the flag's value
+            self.ship.movement_right = True
+        elif event.key == pygame.K_LEFT:
+            self.ship.movement_left = True
+                
+        # check the movement on Y axis
+        elif event.key == pygame.K_UP:
+            self.ship.movement_up = True
+        elif event.key == pygame.K_DOWN:
+            self.ship.movement_down = True
+    
 
+    def _check_keyup_(self, event):
+        """Check and handle KEYUP events"""
+        # if user realeases pressing the button
+        if event.key == pygame.K_RIGHT:
+            # set the value to false
+            self.ship.movement_right = False
+
+        elif event.key == pygame.K_LEFT:
+            # set the value to false
+            self.ship.movement_left = False
+
+        elif event.key == pygame.K_UP:
+            # set the value to false
+            self.ship.movement_up = False
+
+        elif event.key == pygame.K_DOWN:
+            # set the value to false
+            self.ship.movement_down = False
             
             
 
