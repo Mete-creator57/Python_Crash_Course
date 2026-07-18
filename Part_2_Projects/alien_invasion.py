@@ -16,13 +16,9 @@ class AlienInvasion:
         # create an instance of the settigns class
         self.settings = Settings(bg_color=(135, 206, 235))
         
-       
         
-
-        # set the game window size (width, high) 
-        # def the size in the tuple
-        self.screen = pygame.display.set_mode((self.settings.window_width,
-         self.settings.window_height))
+        self.fullscreen_mode()
+        
 
         # set the name of the game displaying window
         pygame.display.set_caption('Alien Game')
@@ -34,6 +30,21 @@ class AlienInvasion:
         # create an instance of the Clock class in pygame.time module
         # so the created instance can access all of the Clock's class methoods
         self.clock = pygame.time.Clock()
+    
+
+    def fullscreen_mode(self):
+        """Turn on fullscreen mode"""
+        response = input('Play in fullscreen? Y = yes: ')
+        if response.lower() == 'y':
+            self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+            self.settings.window_height = self.screen.get_rect().height
+            self.settings.window_width = self.screen.get_rect().width
+        else:
+            self.screen = pygame.display.set_mode((self.settings.window_width, 
+            self.settings.window_height))
+            
+
+
 
     def _check_events(self):
         """Manage all the events in the game"""
