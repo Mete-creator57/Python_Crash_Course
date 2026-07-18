@@ -38,12 +38,11 @@ class AlienInvasion:
     def _check_events(self):
         """Manage all the events in the game"""
         # Watch for keyboard and mouse events
-        # the event loop (every action performed by the user == event)
 
         # event.get() function returns the list of all events
         for event in pygame.event.get():
 
-            # quit the game
+            # quit the game (close via cursor)
             if event.type == pygame.QUIT:  
                 sys.exit() # the programm stops running
 
@@ -60,6 +59,10 @@ class AlienInvasion:
 
     def _check_keydown_(self, event):
         """Check and handle the keydown events"""
+        
+        # exit the game via pressing Q
+        if event.key == pygame.K_q:
+            sys.exit()
 
         # check the movement on X axis
         if event.key == pygame.K_RIGHT:
@@ -73,6 +76,8 @@ class AlienInvasion:
             self.ship.movement_up = True
         elif event.key == pygame.K_DOWN:
             self.ship.movement_down = True
+
+        
     
 
     def _check_keyup_(self, event):
