@@ -5,6 +5,7 @@ from settings import Settings
 import pygame
 from ship import Ship 
 from character_tiy_draw_center import Fighter
+from rocket import Rocket
 
 class AlienInvasion:
     
@@ -13,39 +14,44 @@ class AlienInvasion:
         # init the bg settings for pygame to work properly
         pygame.init()
 
+        
+
         # create an instance of the settigns class
         self.settings = Settings(bg_color=(135, 206, 235))
         
+        self.is_fullscreen = False
+        self.setup_screen_mode()
         
-        self.fullscreen_mode()
         
-
+        
         # set the name of the game displaying window
         pygame.display.set_caption('Alien Game')
         
         # attribute as an Instance of the Class
         self.ship = Ship(self)
         self.fighter = Fighter(self)
+        self.rocket = Rocket(self)
 
         # create an instance of the Clock class in pygame.time module
         # so the created instance can access all of the Clock's class methoods
         self.clock = pygame.time.Clock()
     
 
-    def fullscreen_mode(self):
-        """Turn on fullscreen mode"""
-        response = input('Play in fullscreen? Y = yes: ')
-        if response.lower() == 'y':
+
+    def setup_screen_mode(self):
+        """Set up the display mode based on config flags instead of console input"""
+        if self.is_fullscreen:
             self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
             self.settings.window_height = self.screen.get_rect().height
             self.settings.window_width = self.screen.get_rect().width
         else:
             self.screen = pygame.display.set_mode((self.settings.window_width, 
-            self.settings.window_height))
-            
+                                                   self.settings.window_height))
+    
 
+        # MANAGE ALL EVENTS IN THE GAME
 
-
+ 
     def _check_events(self):
         """Manage all the events in the game"""
         # Watch for keyboard and mouse events
@@ -59,16 +65,57 @@ class AlienInvasion:
 
             # if player presses a button
             elif event.type == pygame.KEYDOWN:
-                self._check_keydown_(event)
+                self._check_keydown_ship(event)
+                self._check_keydown_rocket_(event)
+
             
             # if player releases a key
             elif event.type == pygame.KEYUP:
-                self._check_keyup_(event)
-                
+                self._check_keyup_ship(event)
+                self._check_keyup_rocket_(event)
                 
 
 
-    def _check_keydown_(self, event):
+    # ROCKET MOVEMENT CONTROL   
+
+    def _check_keydown_rocket_(self, event):
+        """Handle the rocket keydown events"""
+        if event.key == pygame.K_d:
+            msg = 'Moving right (Rocket)'
+            print(msg)
+            self.rocket.move_right = True
+        elif event.key == pygame.K_a:
+            print('Moving left (Rocket)')
+            self.rocket.move_left = True
+        elif event.key == pygame.K_w:
+            print('Moving up (Rocket)')
+            self.rocket.move_up = True
+        elif event.key == pygame.K_s:
+            msg = 'Moving down (Rocket)'
+            print(msg)
+            self.rocket.move_down = True
+
+    def _check_keyup_rocket_(self, event):
+        """Check for keyup events (when user doesn't hold or press the button)"""
+
+        if event.key == pygame.K_d:
+            self.rocket.move_right = False
+
+        elif event.key == pygame.K_a:
+            self.rocket.move_left = False
+
+        elif event.key == pygame.K_w:
+            self.rocket.move_up = False
+
+        elif event.key == pygame.K_s:
+            self.rocket.move_down = False
+
+         
+         
+         
+    # SHIP MOVEMENT CONTROL
+
+    def _check_keydown_ship(self, event):
         """Check and handle the keydown events"""
         
         # exit the game via pressing Q
@@ -89,9 +136,8 @@ class AlienInvasion:
             self.ship.movement_down = True
 
         
-    
 
-    def _check_keyup_(self, event):
+    def _check_keyup_ship(self, event):
         """Check and handle KEYUP events"""
         # if user realeases pressing the button
         if event.key == pygame.K_RIGHT:
@@ -110,38 +156,35 @@ class AlienInvasion:
             # set the value to false
             self.ship.movement_down = False
             
+    
+
             
 
-    def _update_screen(self):
+    def _update_screen_(self):
         """Fill the screen with a specified bg color and draw the ship on the screen"""
-        # redraw the screen during the each pass through the loop
         self.screen.fill(self.settings.bg_color)
             
-        # draw the ship at the bottom center
+        # draw the elements on to the screen
         self.ship.blit_draw()
-
         self.fighter.blit_fighter()
+        self.rocket.blit_rocket()
         
         # draw the newest version of the screen
         pygame.display.flip()
 
-    def _move_character_(self):
-        self.ship.update_movement()
 
+    
+
+    
+    # GAME LOOP
 
     def run_game(self):
         """The main method where our game runs"""
-
         while True:
-            # first, check the events to detect what's happening right now
             self._check_events()
-
-            # update the movement of the ship
-            self._move_character_()
-
-            self._update_screen()
-
-            # set the fps to 60
+            self.ship.move_ship()
+            self.rocket.move_rocket()
+            self._update_screen_()
             self.clock.tick(self.settings.fps)
         
         

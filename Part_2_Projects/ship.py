@@ -31,7 +31,6 @@ class Ship:
         
         # store a float for the ship's  exact horizontal position
         self.ship_x = float(self.ship_rect.x)
-
         self.ship_y = float(self.ship_rect.y)
 
         # movement flag; start with a not moving ship
@@ -40,7 +39,7 @@ class Ship:
         self.movement_up = False
         self.movement_down = False
 
-    def update_movement(self):
+    def move_ship(self):
         """Update the ship's postion based on the movement flag"""
 
         # update the ship's x value, not it's rect
