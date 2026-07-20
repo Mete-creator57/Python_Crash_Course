@@ -47,13 +47,13 @@ class Ship:
             self.ship_x += self.settings.ship_speed 
         
         # if the ship didn't reach the left side (left side 0)
-        elif self.movement_left and self.ship_rect.left > self.screen_rect.left:
+        if self.movement_left and self.ship_rect.left > self.screen_rect.left:
             self.ship_x -= self.settings.ship_speed
 
-        elif self.movement_down and self.ship_rect.bottom < self.screen_rect.bottom:
+        if self.movement_down and self.ship_rect.bottom < self.screen_rect.bottom:
             self.ship_y += self.settings.ship_speed
 
-        elif self.movement_up and self.ship_rect.top > self.screen_rect.top:
+        if self.movement_up and self.ship_rect.top > self.screen_rect.top:
             self.ship_y = self.ship_y - self.settings.ship_speed
 
         # assign the updated coordinates to the ship's rect (form)
