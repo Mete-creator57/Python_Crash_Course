@@ -41,13 +41,16 @@ class Rocket:
 
     def move_rocket(self):
         """Adjust the rocket position based on a flag"""
-        if self.move_right:
+        # 
+        if self.move_right and self.rocket_rect.right < self.screen_rect.right:
             self.rocket_x += self.settings.rocket_speed
-        elif self.move_left:
+
+        elif self.move_left and self.rocket_rect.left > self.screen_rect.left:
             self.rocket_x -= self.settings.rocket_speed
-        elif self.move_up:
+
+        elif self.move_up and self.rocket_rect.top < self.screen_rect.top:
             self.rocket_y -= self.settings.rocket_speed
-        elif self.move_down:
+        elif self.move_down and self.rocket_rect.bottom > self.screen_rect.bottom:
             self.rocket_y += self.settings.rocket_speed
         
         self.rocket_rect.x = self.rocket_x
