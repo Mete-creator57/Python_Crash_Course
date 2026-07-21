@@ -6,6 +6,7 @@ import pygame
 from ship import Ship 
 from character_tiy_draw_center import Fighter
 from rocket import Rocket
+from bullet import Bullet
 
 class AlienInvasion:
     
@@ -31,6 +32,7 @@ class AlienInvasion:
         self.ship = Ship(self)
         self.fighter = Fighter(self)
         self.rocket = Rocket(self)
+        self.bullets = pygame.sprite.Group() # to hold a list of bullets
 
         # create an instance of the Clock class in pygame.time module
         # so the created instance can access all of the Clock's class methoods
@@ -183,6 +185,7 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.move_ship()
+            self.bullets.update() # -> update the pos of bullets on each pass
             self.rocket.move_rocket()
             self._update_screen_()
             self.clock.tick(self.settings.fps)
