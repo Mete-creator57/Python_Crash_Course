@@ -4,7 +4,7 @@ from pygame.sprite import Sprite
 class Bullet(Sprite):
     """Manage bullets fired from the ship"""
     def __init__(self, game_instance):
-        super.__init__() # inherit Sprite to get access to all of the methods
+        super().__init__() # inherit Sprite to get access to all of the methods
         self.screen = game_instance.screen
         self.settings = game_instance.settings
         self.color = self.settings.bullet_color
@@ -22,13 +22,13 @@ class Bullet(Sprite):
         # as we've done with the rocket and the ship
         self.bullet_y = float(self.bullet_rect.y)
 
-    def move_bullet(self):
+    def update_bullet(self):
         """Manage the bullet movements"""
-        # Move the exact pos on Y-axis
-        self.bullet_y -= self.settings.bullet_speed
-        
-        # update the bullet position on Y axis
-        self.bullet_rect.y = self.bullet_y
+        # the shortened version of: 
+        # self.x -= self.settings.bullet_speed
+        # self.bullet_rect.x = self.x
+        self.bullet_rect.y -= self.settings.bullet_speed # Move the exact pos on Y-axis
+  
 
     def draw_bullet(self):
         """Display the bullet on the screen"""

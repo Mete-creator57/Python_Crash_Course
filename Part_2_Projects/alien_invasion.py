@@ -124,6 +124,11 @@ class AlienInvasion:
         if event.key == pygame.K_q:
             sys.exit()
 
+        # if spacebar is pressed down -> add a new bullet to the group
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet_()
+            
+
         # check the movement on X axis
         if event.key == pygame.K_RIGHT:
             # set the flag's value
@@ -159,12 +164,21 @@ class AlienInvasion:
             self.ship.movement_down = False
             
     
+    def _fire_bullet_(self):
+        """Create a new bullet and add it to the bullet's group"""
+        new_bullet = Bullet(self) # create a new bullet
+        self.bullets.add(new_bullet)
 
             
 
     def _update_screen_(self):
         """Fill the screen with a specified bg color and draw the ship on the screen"""
         self.screen.fill(self.settings.bg_color)
+        
+        # draw each new bullet
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
+            bullet.update_bullet()
             
         # draw the elements on to the screen
         self.ship.blit_draw()
