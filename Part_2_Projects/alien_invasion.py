@@ -175,7 +175,7 @@ class AlienInvasion:
         """Fill the screen with a specified bg color and draw the ship on the screen"""
         self.screen.fill(self.settings.bg_color)
         
-        # draw each new bullet
+        # draw and update each new bullet
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
             bullet.update_bullet()
@@ -200,6 +200,14 @@ class AlienInvasion:
             self._check_events()
             self.ship.move_ship()
             self.bullets.update() # -> update the pos of bullets on each pass
+
+            # Delete dissapeared bullets (copy() to deal with the copy of a group)
+            for bullet in self.bullets.copy():
+                # when each bullet's bottom rect becomes negative (pass the screen)
+                if bullet.bullet_rect.bottom <= 0:
+                    self.bullets.remove(bullet)
+            print(len(self.bullets))
+            
             self.rocket.move_rocket()
             self._update_screen_()
             self.clock.tick(self.settings.fps)
