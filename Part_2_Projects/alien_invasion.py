@@ -166,8 +166,10 @@ class AlienInvasion:
     
     def _fire_bullet_(self):
         """Create a new bullet and add it to the bullet's group"""
-        new_bullet = Bullet(self) # create a new bullet
-        self.bullets.add(new_bullet)
+        # only add a new bullet if there are less than 3 in a group 
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self) # create a new bullet
+            self.bullets.add(new_bullet)
 
             
 
@@ -207,7 +209,7 @@ class AlienInvasion:
                 if bullet.bullet_rect.bottom <= 0:
                     self.bullets.remove(bullet)
             print(len(self.bullets))
-            
+
             self.rocket.move_rocket()
             self._update_screen_()
             self.clock.tick(self.settings.fps)
