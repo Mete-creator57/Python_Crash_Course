@@ -8,3 +8,6 @@ class Preferences:
 
         # Jet settings
         self.jet_speed = 5
+
+        # Fire_ball settings
+        self.ball_speed = 10

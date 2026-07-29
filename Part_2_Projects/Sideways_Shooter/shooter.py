@@ -6,6 +6,7 @@ import pygame
 from pygame import sprite 
 from jet import Jet
 from preferences import Preferences
+from fire import Fire_Ball
 
 class Shooter_Game:
     """Class to manage the game"""
@@ -19,6 +20,7 @@ class Shooter_Game:
         self.screen_rect = self.screen.get_rect()
 
         self.jet = Jet(self)
+        self.fire_ball = Fire_Ball(self, self.jet)
 
         pygame.display.set_caption('Sideways Shooter')
         pygame.display.set_icon(self.preferences.icon)
@@ -31,6 +33,7 @@ class Shooter_Game:
 
         # draw the jet on to the 
         self.jet.blit_jet()
+        self.fire_ball.blit_ball()
 
         # replace the old screen with a new one
         pygame.display.flip()
@@ -47,6 +50,8 @@ class Shooter_Game:
                     self.jet.move_up = True # Set flag to True
                 elif event.key == pygame.K_DOWN: # Use elif for mutually exclusive keys
                     self.jet.move_down = True # Set flag to True
+                elif event.key == pygame.K_SPACE:
+                    self.fire_ball.move = True
 
             # Keyup events
             if event.type == pygame.KEYUP:
@@ -54,12 +59,17 @@ class Shooter_Game:
                     self.jet.move_up = False # Set flag to False
                 elif event.key == pygame.K_DOWN: # Use elif for mutually exclusive keys
                     self.jet.move_down = False # Set flag to False
+                
 
     def run_game(self):
         is_active = True
         while is_active:
-            self._check_events()
+            self._check_events() # check the events 
+
+            # update ball and jet positions based on their flags
             self.jet.update() # Call the jet's update method here
+            self.fire_ball.update() 
+
             self._update_screen_()
             # set the frame rate to 60 per second
             self.clock.tick(60) 
