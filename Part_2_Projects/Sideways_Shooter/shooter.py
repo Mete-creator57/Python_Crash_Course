@@ -41,25 +41,29 @@ class Shooter_Game:
             if event.type == pygame.QUIT:
                 sys.exit()
 
+            # Keydown events
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    self.jet.move_up = True # Set flag to True
+                elif event.key == pygame.K_DOWN: # Use elif for mutually exclusive keys
+                    self.jet.move_down = True # Set flag to True
 
+            # Keyup events
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_UP:
+                    self.jet.move_up = False # Set flag to False
+                elif event.key == pygame.K_DOWN: # Use elif for mutually exclusive keys
+                    self.jet.move_down = False # Set flag to False
 
     def run_game(self):
         is_active = True
         while is_active:
             self._check_events()
+            self.jet.update() # Call the jet's update method here
             self._update_screen_()
             # set the frame rate to 60 per second
             self.clock.tick(60) 
 
-
-            
-            
-
-    
-
 if __name__ == '__main__':
     game = Shooter_Game()
     game.run_game()
-
-
-        

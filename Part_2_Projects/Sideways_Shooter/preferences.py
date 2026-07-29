@@ -5,3 +5,6 @@ class Preferences:
         self.width = 1000
         self.height = 800
         self.bg_color = (255, 255, 255)
+
+        # Jet settings
+        self.jet_speed = 5
