@@ -26,6 +26,8 @@ class Shooter_Game:
         pygame.display.set_icon(self.preferences.icon)
         self.clock = pygame.Clock()
 
+
+    # DRAW ALL ELEMENTS ON THE SCREEN
     def _update_screen_(self):
         """Update the screen"""
         # Fill the screen with a color
@@ -37,14 +39,18 @@ class Shooter_Game:
         # Draw each fireball in a list on the screen
         for fireball in self.fireballs.sprites():
             fireball.blit_ball()
-            # REMOVED: fireball.update() - Updates should happen in the main loop
+        
+
         # Replace the old screen with a new one
         pygame.display.flip()
     
     def _add_fireball(self):
-        """Create a new fireball and add it to the fireballs group."""
-        new_fireball = Fire_Ball(self, self.jet) # Pass game and the jet object
-        self.fireballs.add(new_fireball)
+        """Create a new fireball 
+        and add it to the fireballs group only if there are less than 2 already."""
+        if len(self.fireballs) < 2:
+            new_fireball = Fire_Ball(self, self.jet) # Pass game and the jet object
+            self.fireballs.add(new_fireball)
+        
         
     def _check_events(self):
         """Check all events in the game"""
@@ -75,8 +81,7 @@ class Shooter_Game:
 
             # Update jet position based on its flags
             self.jet.update()
-            # Update all fireballs positions
-            self.fireballs.update() # CORRECT: All fireball updates happen here once per frame
+            self.fireballs.update()
 
             self._update_screen_()
             # Set the frame rate to 60 per second

@@ -27,7 +27,7 @@ class Fire_Ball(Sprite):
 
         # Update the rect object's position
         self.rect.x = self.x
-            
+        
         # Remove fireballs that have gone off-screen to save resources
         if self.rect.left >= self.screen_rect.right:
             self.kill() # Method provided by Sprite to remove itself from groups
