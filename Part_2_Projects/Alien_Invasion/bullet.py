@@ -19,14 +19,14 @@ class Bullet(Sprite):
 
         # Store the bullet's position (on y axis) as a float
         # this is used to modify the bullet location by it's speed
-        # as we've done with the rocket and the ship
+        # as we've done with the rocket and the ship (just to show)
         self.bullet_y = float(self.bullet_rect.y)
 
     def update_bullet(self):
         """Manage the bullet movements"""
         # the shortened version of: 
-        # self.x -= self.settings.bullet_speed
-        # self.bullet_rect.x = self.x
+        # self.y -= self.settings.bullet_speed
+        # self.bullet_rect.y = self.y
         self.bullet_rect.y -= self.settings.bullet_speed # Move the exact pos on Y-axis
   
 
