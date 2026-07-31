@@ -17,3 +17,8 @@ class Settings:
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)
         self.bullets_allowed = 3 # limit the bullets number
+
+        # Alien settings
+        self.alien_width = 60 # Set your desired width
+        self.alien_height = 40 # Set your desired height
+

@@ -7,6 +7,7 @@ from ship import Ship
 from character_tiy_draw_center import Fighter
 from rocket import Rocket
 from bullet import Bullet
+from alien import Alien
 
 class AlienInvasion:
     
@@ -28,11 +29,14 @@ class AlienInvasion:
         # set the name of the game displaying window
         pygame.display.set_caption('Alien Game')
         
-        # attribute as an Instance of the Class
+        # init the game elements
         self.ship = Ship(self)
         self.fighter = Fighter(self)
         self.rocket = Rocket(self)
-        self.bullets = pygame.sprite.Group() # to hold a list of bullets
+        self.bullets = pygame.sprite.Group() 
+        self.aliens = pygame.sprite.Group() 
+
+        self._create_alien_fleet()
 
         # create an instance of the Clock class in pygame.time module
         # so the created instance can access all of the Clock's class methoods
@@ -171,6 +175,11 @@ class AlienInvasion:
             new_bullet = Bullet(self) # create a new bullet
             self.bullets.add(new_bullet)
 
+    def _create_alien_fleet(self):
+        """Create the fleet of aliens"""
+        alien = Alien(self)
+        self.aliens.add(alien)
+
     def __update_bullets__(self):
         """Update bullets positions and delete 
         dissapeared bullets to save memory"""
@@ -186,7 +195,7 @@ class AlienInvasion:
             print(len(self.bullets))
         
 
-    # Update the screen
+    # Update the screen (DRAW the game elements)
     def _update_screen_(self):
         """Fill the screen with a specified bg color, update each bullet
          and draw the ship on the screen"""
@@ -199,6 +208,7 @@ class AlienInvasion:
             
         # draw the elements on to the screen
         self.ship.blit_draw()
+        self.aliens.draw(self.screen)
         self.fighter.blit_fighter()
         self.rocket.blit_rocket()
         
