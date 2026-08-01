@@ -175,10 +175,17 @@ class AlienInvasion:
             new_bullet = Bullet(self) # create a new bullet
             self.bullets.add(new_bullet)
 
-    def _create_alien_fleet(self):
-        """Create the fleet of aliens"""
+
+
+    def _create_alien(self):
+        """Create a single alien"""
         alien = Alien(self)
         self.aliens.add(alien)
+        return alien
+
+    def _create_alien_fleet(self):
+        """Create the fleet of aliens"""
+        alien = self._create_alien()
 
         # get the alien width
         alien_width = alien.rect.width
