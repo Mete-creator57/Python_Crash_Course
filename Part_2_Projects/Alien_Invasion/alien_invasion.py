@@ -180,6 +180,26 @@ class AlienInvasion:
         alien = Alien(self)
         self.aliens.add(alien)
 
+        # get the alien width
+        alien_width = alien.rect.width
+        
+        # assign the alien width
+        current_x = alien_width
+
+        # while there's at least 2 alien widths on the screen
+        while current_x < (self.settings.window_width - 2 * alien_width):
+            new_alien = Alien(self) # create a new alien
+
+            alien.x = current_x # set the precise position of x
+
+            new_alien.rect.x = current_x # assign the presize position to the rect
+
+            self.aliens.add(new_alien) # add a new alien to the existing group
+            # increment the value  of current_x leaving some space
+            current_x += 2 * alien_width
+
+
+
     def __update_bullets__(self):
         """Update bullets positions and delete 
         dissapeared bullets to save memory"""
