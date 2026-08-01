@@ -7,6 +7,7 @@ from pygame import sprite # This is okay, but `pygame.sprite.Group` is more expl
 from jet import Jet
 from preferences import Preferences
 from fire import Fire_Ball
+from star import Star
 
 class Shooter_Game:
     """Class to manage the game"""
@@ -21,11 +22,29 @@ class Shooter_Game:
 
         self.jet = Jet(self)
         self.fireballs = pygame.sprite.Group() # Group to hold all active fireballs
+        self.stars = pygame.sprite.Group()
 
         pygame.display.set_caption('Sideways Shooter')
         pygame.display.set_icon(self.preferences.icon)
+
+        self._create_stars_()
+
         self.clock = pygame.Clock()
 
+
+    def _create_stars_(self):
+        star = Star(self)
+        star_height = star.rect.height
+
+        current_y = star_height
+
+        while current_y < (self.preferences.height - 2 * star_height):
+            new_star = Star(self)
+            new_star.y = current_y
+            new_star.rect.y = current_y
+            self.stars.add(new_star)
+            current_y += 2 * star_height
+    
 
     # DRAW ALL ELEMENTS ON THE SCREEN
     def _update_screen_(self):
@@ -35,6 +54,8 @@ class Shooter_Game:
 
         # Draw the jet
         self.jet.blit_jet()
+
+        self.stars.draw(self.screen)
 
         # Draw each fireball in a list on the screen
         for fireball in self.fireballs.sprites():
