@@ -177,34 +177,33 @@ class AlienInvasion:
 
 
 
-    def _create_alien(self):
+    def _create_alien(self, current_x, current_y):
         """Create a single alien"""
-        alien = Alien(self)
-        self.aliens.add(alien)
-        return alien
+        new_alien = Alien(self)
+        new_alien.x = current_x
+        new_alien.rect.x = current_x
+        new_alien.rect.y = current_y
+        self.aliens.add(new_alien)
 
     def _create_alien_fleet(self):
         """Create the fleet of aliens"""
-        alien = self._create_alien()
+        # Create a new alien to access it's width and height for drawing the fleet
+        alien = Alien(self)
+        # .size attribute of the rect gets us a tuple
+        #  in which the width and the height of a single alien are stored
+        alien_width, alien_height = alien.rect.size
 
-        # get the alien width
-        alien_width = alien.rect.width
-        
-        # assign the alien width
-        current_x = alien_width
+        current_x, current_y = alien_width, alien_height
 
-        # while there's at least 2 alien widths on the screen
-        while current_x < (self.settings.window_width - 2 * alien_width):
-            new_alien = Alien(self) # create a new alien
+        while current_y < (self.settings.window_height - 3 * alien_height):
+            while current_x < (self.settings.window_width - 2 * alien_width):
+                self._create_alien(current_x, current_y)
+                # add space of 2 alien width setting the pos of the next alien
+                current_x += 2 * alien_width 
 
-            alien.x = current_x # set the precise position of x
-
-            new_alien.rect.x = current_x # assign the presize position to the rect
-
-            self.aliens.add(new_alien) # add a new alien to the existing group
-            # increment the value  of current_x leaving some space
-            current_x += 2 * alien_width
-
+            # Move on to the next row
+            current_x = alien_width
+            current_y += 2 * alien_height
 
 
     def __update_bullets__(self):

@@ -1,5 +1,6 @@
 import pygame
 from pygame.sprite import Sprite
+from pathlib import Path
 
 class Alien(Sprite):
     """A class to manage a single alien in the fleet"""
@@ -8,8 +9,9 @@ class Alien(Sprite):
         self.screen = game.screen
         self.settings = game.settings # Important: access game's settings
 
+        path = Path(r'D:\Soft_Dev\Python_Crash_Course\Part_2_Projects\Alien_Invasion\alien.png')
         # load the alien image and get its rect attribute
-        self.image = pygame.image.load('alien.png')
+        self.image = pygame.image.load(path)
 
         # Scale the image to the desired size 
         self.image = pygame.transform.scale(self.image,
