@@ -1,10 +1,9 @@
 import requests
-
+import plotly.express as px
 
 # Make an API call and check the response from the website
 url = 'https://api.github.com/search/repositories'
 # :>10000 look for those who have more than 10.000 stars
-url += '?q=language:python+sort:stars:>10000' 
 
 # Accept  data only in json format -> 'Accept' 
 # using 3rd version of GitHub's API
@@ -17,7 +16,7 @@ query_params = {
     'q': 'language:python stars:>10000',
     # Explicitly set sorting parameters separately:
     'sort': 'stars',
-    'order': 'desc'
+    'order': 'desc' # get with the most stars first
 }
 # Request the data using .get() function
 #  by passing the url of the website and the headers
@@ -33,34 +32,25 @@ incomplete_results = f'Incomplete results: {response_dict["incomplete_results"]}
 repos = response_dict["items"]
 returned_repos_length = len(repos)
 
-first_repo = repos[0]
-keys = f'1 repo total keys count: {len(first_repo)}'
-
+repo_names, stars = [], []
+for repo in repos:
+    repo_names.append(repo['name'])
+    stars.append(repo['stargazers_count'])
 
 print(total_repos)
 print(incomplete_results)
 print(returned_repos_length)
-print(keys)
-
-# loop through the first repo's keys and print them
-for key in sorted(first_repo.keys()):
-    print(key)
 
 
 
-
-# Output the results
-print(response_dict.keys())
-
-print('\nInformation about the first repository:')
-print(f"Name: {first_repo['name']}")
-print(f"Stars: {first_repo["stargazers_count"]}")
-print(f"Watchers: {first_repo['watchers']}")
-
-
+# Loop through first 30 repos
 print('\n Info about each repo')
-for repo in repos:
+for repo in repos[:30]:
     print(f"Name: {repo['name']}")
-    print(f"Stars: {repo["stargazers_count"]}")
+    print(f"Stars: {repo['stargazers_count']}")
     print(f"Watchers: {repo['watchers']}")
     print()
+
+# Visualize the results
+fig = px.bar(x=repo_names, y=stars)
+fig.show()
