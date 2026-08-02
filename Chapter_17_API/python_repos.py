@@ -10,9 +10,18 @@ url += '?q=language:python+sort:stars:>10000'
 # using 3rd version of GitHub's API
 headers = {'Accept': 'application/vnd.github.v3+json'}
 
+# 2. Define API query parameters as a dictionary.
+# Using 'params' lets Python safely handle encoding (no accidental spaces!)
+query_params = {
+    # Combine the language and star filter inside the 'q' parameter string:
+    'q': 'language:python stars:>10000',
+    # Explicitly set sorting parameters separately:
+    'sort': 'stars',
+    'order': 'desc'
+}
 # Request the data using .get() function
 #  by passing the url of the website and the headers
-r = requests.get(url, headers=headers)
+r = requests.get(url, params=query_params,  headers=headers)
 print(f'Status code: {r.status_code}')
 
 # Convert the response object to a dict
@@ -42,3 +51,16 @@ for key in sorted(first_repo.keys()):
 
 # Output the results
 print(response_dict.keys())
+
+print('\nInformation about the first repository:')
+print(f"Name: {first_repo['name']}")
+print(f"Stars: {first_repo["stargazers_count"]}")
+print(f"Watchers: {first_repo['watchers']}")
+
+
+print('\n Info about each repo')
+for repo in repos:
+    print(f"Name: {repo['name']}")
+    print(f"Stars: {repo["stargazers_count"]}")
+    print(f"Watchers: {repo['watchers']}")
+    print()
