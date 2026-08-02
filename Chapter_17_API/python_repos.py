@@ -18,5 +18,27 @@ print(f'Status code: {r.status_code}')
 # Convert the response object to a dict
 response_dict = r.json()
 
+# Get the data
+total_repos = f'Total repositories: {response_dict["total_count"]}'
+incomplete_results = f'Incomplete results: {response_dict["incomplete_results"]}'
+repos = response_dict["items"]
+returned_repos_length = len(repos)
+
+first_repo = repos[0]
+keys = f'1 repo total keys count: {len(first_repo)}'
+
+
+print(total_repos)
+print(incomplete_results)
+print(returned_repos_length)
+print(keys)
+
+# loop through the first repo's keys and print them
+for key in sorted(first_repo.keys()):
+    print(key)
+
+
+
+
 # Output the results
 print(response_dict.keys())
