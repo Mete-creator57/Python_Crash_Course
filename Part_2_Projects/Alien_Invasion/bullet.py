@@ -22,7 +22,7 @@ class Bullet(Sprite):
         # as we've done with the rocket and the ship (just to show)
         self.bullet_y = float(self.bullet_rect.y)
 
-    def update_bullet(self):
+    def update(self):
         """Manage the bullet movements"""
         # the shortened version of: 
         # self.y -= self.settings.bullet_speed

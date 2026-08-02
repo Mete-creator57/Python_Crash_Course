@@ -17,7 +17,7 @@ class AlienInvasion:
         
 
         # create an instance of the settigns class
-        self.settings = Settings(bg_color=(135, 206, 235))
+        self.settings = Settings(bg_color=(0, 0, 0))
         
         self.is_fullscreen = False
         self.setup_screen_mode()
@@ -176,13 +176,14 @@ class AlienInvasion:
         """Fill the screen with a specified bg color, update each bullet
          and draw the ship on the screen"""
         self.screen.fill(self.settings.bg_color)
-        
+
         self.ship.blit_draw()
+
         # draw and update each new bullet
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+            
         # draw the elements on to the screen
-        
         self.aliens.draw(self.screen)
         
         # draw the newest version of the screen
