@@ -95,6 +95,7 @@ class Shooter_Game:
     def _add_fireball(self):
         """Create a new fireball 
         and add it to the fireballs group only if there are less than 2 already."""
+        # len() function can return either 0 or 1 here 
         if len(self.fireballs) < 2:
             new_fireball = Fire_Ball(self, self.jet) # Pass game and the jet object
             self.fireballs.add(new_fireball)

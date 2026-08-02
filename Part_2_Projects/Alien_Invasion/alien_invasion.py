@@ -7,6 +7,7 @@ from ship import Ship
 from character_tiy_draw_center import Fighter
 from rocket import Rocket
 from bullet import Bullet
+from alien import Alien
 
 class AlienInvasion:
     
@@ -28,11 +29,14 @@ class AlienInvasion:
         # set the name of the game displaying window
         pygame.display.set_caption('Alien Game')
         
-        # attribute as an Instance of the Class
+        # init the game elements
         self.ship = Ship(self)
         self.fighter = Fighter(self)
         self.rocket = Rocket(self)
-        self.bullets = pygame.sprite.Group() # to hold a list of bullets
+        self.bullets = pygame.sprite.Group() 
+        self.aliens = pygame.sprite.Group() 
+
+        self._create_alien_fleet()
 
         # create an instance of the Clock class in pygame.time module
         # so the created instance can access all of the Clock's class methoods
@@ -171,6 +175,37 @@ class AlienInvasion:
             new_bullet = Bullet(self) # create a new bullet
             self.bullets.add(new_bullet)
 
+
+
+    def _create_alien(self, current_x, current_y):
+        """Create a single alien"""
+        new_alien = Alien(self)
+        new_alien.x = current_x
+        new_alien.rect.x = current_x
+        new_alien.rect.y = current_y
+        self.aliens.add(new_alien)
+
+    def _create_alien_fleet(self):
+        """Create the fleet of aliens"""
+        # Create a new alien to access it's width and height for drawing the fleet
+        alien = Alien(self)
+        # .size attribute of the rect gets us a tuple
+        #  in which the width and the height of a single alien are stored
+        alien_width, alien_height = alien.rect.size
+
+        current_x, current_y = alien_width, alien_height
+
+        while current_y < (self.settings.window_height - 3 * alien_height):
+            while current_x < (self.settings.window_width - 2 * alien_width):
+                self._create_alien(current_x, current_y)
+                # add space of 2 alien width setting the pos of the next alien
+                current_x += 2 * alien_width 
+
+            # Move on to the next row
+            current_x = alien_width
+            current_y += 2 * alien_height
+
+
     def __update_bullets__(self):
         """Update bullets positions and delete 
         dissapeared bullets to save memory"""
@@ -186,7 +221,7 @@ class AlienInvasion:
             print(len(self.bullets))
         
 
-    # Update the screen
+    # Update the screen (DRAW the game elements)
     def _update_screen_(self):
         """Fill the screen with a specified bg color, update each bullet
          and draw the ship on the screen"""
@@ -199,6 +234,7 @@ class AlienInvasion:
             
         # draw the elements on to the screen
         self.ship.blit_draw()
+        self.aliens.draw(self.screen)
         self.fighter.blit_fighter()
         self.rocket.blit_rocket()
         
