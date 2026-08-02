@@ -5,10 +5,8 @@ from settings import Settings
 import pygame
 from ship import Ship 
 from character_tiy_draw_center import Fighter
-from rocket import Rocket
 from bullet import Bullet
 from alien import Alien
-
 class AlienInvasion:
     
     def __init__(self):
@@ -19,7 +17,7 @@ class AlienInvasion:
         
 
         # create an instance of the settigns class
-        self.settings = Settings(bg_color=(135, 206, 235))
+        self.settings = Settings(bg_color=(0, 0, 0))
         
         self.is_fullscreen = False
         self.setup_screen_mode()
@@ -31,8 +29,6 @@ class AlienInvasion:
         
         # init the game elements
         self.ship = Ship(self)
-        self.fighter = Fighter(self)
-        self.rocket = Rocket(self)
         self.bullets = pygame.sprite.Group() 
         self.aliens = pygame.sprite.Group() 
 
@@ -72,58 +68,13 @@ class AlienInvasion:
             # if player presses a button
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_ship(event)
-                self._check_keydown_rocket_(event)
-
-            
             # if player releases a key
             elif event.type == pygame.KEYUP:
                 self._check_keyup_ship(event)
-                self._check_keyup_rocket_(event)
-                
-
-
-    # ROCKET MOVEMENT CONTROL   
-
-    def _check_keydown_rocket_(self, event):
-        """Handle the rocket keydown events"""
-        if event.key == pygame.K_d:
-            msg = 'Moving right (Rocket)'
-            print(msg)
-            self.rocket.move_right = True
-        elif event.key == pygame.K_a:
-            print('Moving left (Rocket)')
-            self.rocket.move_left = True
-        elif event.key == pygame.K_w:
-            print('Moving up (Rocket)')
-            self.rocket.move_up = True
-        elif event.key == pygame.K_s:
-            msg = 'Moving down (Rocket)'
-            print(msg)
-            self.rocket.move_down = True
-
-    def _check_keyup_rocket_(self, event):
-        """Check for keyup events (when user doesn't hold or press the button)"""
-
-        if event.key == pygame.K_d:
-            self.rocket.move_right = False
-
-        elif event.key == pygame.K_a:
-            self.rocket.move_left = False
-
-        elif event.key == pygame.K_w:
-            self.rocket.move_up = False
-
-        elif event.key == pygame.K_s:
-            self.rocket.move_down = False
-
-         
-         
-         
     # SHIP MOVEMENT CONTROL
 
     def _check_keydown_ship(self, event):
         """Check and handle the keydown events"""
-        
         # exit the game via pressing Q
         if event.key == pygame.K_q:
             sys.exit()
@@ -218,25 +169,22 @@ class AlienInvasion:
             # when each bullet's bottom rect becomes negative (pass the screen)
             if bullet.bullet_rect.bottom <= 0:
                 self.bullets.remove(bullet)
-            print(len(self.bullets))
-        
+
 
     # Update the screen (DRAW the game elements)
     def _update_screen_(self):
         """Fill the screen with a specified bg color, update each bullet
          and draw the ship on the screen"""
         self.screen.fill(self.settings.bg_color)
-        
+
+        self.ship.blit_draw()
+
         # draw and update each new bullet
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
-            bullet.update_bullet()
             
         # draw the elements on to the screen
-        self.ship.blit_draw()
         self.aliens.draw(self.screen)
-        self.fighter.blit_fighter()
-        self.rocket.blit_rocket()
         
         # draw the newest version of the screen
         pygame.display.flip()
@@ -252,7 +200,6 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.move_ship()
-            self.rocket.move_rocket()
             self.__update_bullets__() # update bullets
             self._update_screen_()
             self.clock.tick(self.settings.fps)
