@@ -65,4 +65,8 @@ fig = px.bar(x=repo_links, y=stars, title=title, labels=labels, hover_name=hover
 
 # set font sizes
 fig.update_layout(title_font_size=28, xaxis_title_font_size=20, yaxis_title_font_size=20)
+
+# customize the chart
+fig.update_traces(marker_color='SteelBlue', marker_opacity=0.6)
+
 fig.show()
