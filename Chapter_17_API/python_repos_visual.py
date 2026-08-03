@@ -1,5 +1,5 @@
 import requests
-import plotly.express as px
+import plotly.express as px # for visualization
 
 # Make an API call and check the response from the website
 url = 'https://api.github.com/search/repositories'
@@ -52,5 +52,10 @@ for repo in repos[:30]:
     print()
 
 # Visualize the results
-fig = px.bar(x=repo_names, y=stars)
+title = 'Most-Starred Python Porjects on GitHub'
+labels = {'x': 'Repository', 'y': 'Stars'} # add labels
+fig = px.bar(x=repo_names, y=stars, title=title, labels=labels) # init the bars
+
+# set font sizes
+fig.update_layout(title_font_size=28, xaxis_title_font_size=20, yaxis_title_font_size=20)
 fig.show()
