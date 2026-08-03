@@ -32,29 +32,33 @@ incomplete_results = f'Incomplete results: {response_dict["incomplete_results"]}
 repos = response_dict["items"]
 returned_repos_length = len(repos)
 
-repo_names, stars = [], []
-for repo in repos:
-    repo_names.append(repo['name'])
-    stars.append(repo['stargazers_count'])
-
+# Print the results
 print(total_repos)
 print(incomplete_results)
 print(returned_repos_length)
 
+repo_names, stars, hover_texts = [], [], []
+for repo in repos:
+    repo_names.append(repo['name'])
+    stars.append(repo['stargazers_count'])
+
+    # Build hover texts
+    owner = repo['owner']['login']
+    description = repo['description']
+    # <br /> (break line) is HTML code that alows to start from a new line
+    # like \n _> new line
+    hover_text = f"{owner}<br />{description}"
+    hover_texts.append(hover_text)
 
 
-# Loop through first 30 repos
-print('\n Info about each repo')
-for repo in repos[:30]:
-    print(f"Name: {repo['name']}")
-    print(f"Stars: {repo['stargazers_count']}")
-    print(f"Watchers: {repo['watchers']}")
-    print()
+
+
+
 
 # Visualize the results
 title = 'Most-Starred Python Porjects on GitHub'
 labels = {'x': 'Repository', 'y': 'Stars'} # add labels
-fig = px.bar(x=repo_names, y=stars, title=title, labels=labels) # init the bars
+fig = px.bar(x=repo_names, y=stars, title=title, labels=labels, hover_name=hover_texts) # init the bars
 
 # set font sizes
 fig.update_layout(title_font_size=28, xaxis_title_font_size=20, yaxis_title_font_size=20)
